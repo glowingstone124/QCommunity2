@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="script/userdisplay.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="menu">
+            <!-- 左边的功能菜单 -->
+            <ul>
+                <li><a href="status.html" class="selected">服务器概况</a></li>
+                <li><a href="bind.html">绑定游戏账户</a></li>
+                <li><a href="map.html">服务器地图</a></li>
+                <li><a href="searchbind.html">查询绑定</a></li>
+                <li><a href="about.html">关于QOApp</a></li>
+                <li><a href="forum.html">论坛</a></li>
+                <li><a href="memorial.html">纪念堂</a></li>  
+                <!-- 添加其他菜单项 -->
+            </ul>
+        </div>
+        <div class="content">
+            <!-- 右边的内容显示区域 -->
+            <h1>服务器状态</h1>
+            <p>MSPT: <span id="mspt">正在加载...</span></p>
+            <p>在线玩家:</p>
+            <ul id="playerList">
+                <li>正在加载...</li>
+            </ul>
+            <p>在线人数: <span id="onlineCount">正在加载...</span></p>
+            <p id="cpuUsage">CPU占用：正在加载...</p>
+        </div>
+    </div>
+    <script>
+        // 使用JavaScript从API获取数据并更新内容区域
+        const apiUrl = 'https://webapi.qoriginal.vip/qo/download/status'; // 替换为实际API的URL
+
+        function updateServerStatus() {
+            // 使用fetch API获取API数据
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // 更新MSPT
+                    const msptElement = document.getElementById('mspt');
+                    msptElement.textContent = data.mspt;
+
+                    // 更新在线玩家列表
+                    const playerListElement = document.getElementById('playerList');
+                    playerListElement.innerHTML = ''; // 清空列表
+
+                    data.players.forEach(player => {
+                        const playerListItem = document.createElement('li');
+                        playerListItem.textContent = player.name;
+                        playerListElement.appendChild(playerListItem);
+                    });
+
+                    // 更新在线人数
+                    const onlineCountElement = document.getElementById('onlineCount');
+                    if (data.onlinecount != 0){
+                    onlineCountElement.textContent = data.onlinecount;
+                    } else {
+                        onlineCountElement.textContent = "当前暂无玩家在线~";
+                    }
+                })
+                .catch(error => {
+                    // 在出现错误时处理
+                    const msptElement = document.getElementById('mspt');
+                    msptElement.textContent = '无法获取数据。';
+                    const playerListElement = document.getElementById('playerList');
+                    playerListElement.innerHTML = '<li>无法获取玩家列表。</li>';
+                    const onlineCountElement = document.getElementById('onlineCount');
+                    onlineCountElement.textContent = 'N/A';
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        // 页面加载时获取一次数据并更新
+        updateServerStatus();
+
+        // 每隔10秒获取一次数据并更新
+        setInterval(updateServerStatus, 500); // 时间间隔为10000毫秒（即10秒）
+        const apiUrl2 = 'https://webapi.qoriginal.vip/qo/download/systeminfo'; // 替换为实际API的URL
+
+        function updateCpuUsage() {
+            // 使用fetch API获取API数据
+            fetch(apiUrl2)
+                .then(response => response.json())
+                .then(data => {
+                    // 更新CPU占用的显示
+                    const cpuUsageElement = document.getElementById('cpuUsage');
+                    if(cpuUsageElement > 70){
+                        cpuUsageElement.textContent = `CPU占用：${data.cpu_usage}%,占用过高！请联系管理`;
+                    } else {
+                        cpuUsageElement.textContent = `CPU占用：${data.cpu_usage}%`;
+                    }
+                })
+                .catch(error => {
+                    // 在出现错误时处理
+                    const cpuUsageElement = document.getElementById('cpuUsage');
+                    cpuUsageElement.textContent = '无法获取CPU占用数据。';
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        // 每隔5秒获取一次数据并更新
+        setInterval(updateCpuUsage, 500); // 时间间隔为5000毫秒（即5秒）
+    </script>
+</body>
+</html>

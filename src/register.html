@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body id="backgroundBody">
+    <div class="login-container">
+        <div class="back-button">
+            <button onclick="goBack()">返回</button>
+        </div>
+        <h1>注册新账户</h1>
+        <form onsubmit="return false;">
+            <label for="username">用户名：</label>
+            <input type="text" id="username" placeholder="请输入用户名">
+            <br>
+            <label for="password">密码：</label>
+            <input type="password" id="password" placeholder="请输入密码">
+            <br>
+            <button onclick="register()">注册</button>
+        </form>
+    </div>
+    <script src="script/register.js"></script>
+    <script src="script/bgswitcher.js"></script>
+</body>
+</html>

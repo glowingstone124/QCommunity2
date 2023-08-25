@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<head>
+    <style>
+          .topbar {
+        background-color: #3b3a3a; /* 灰色背景色 */
+        height: 30px;
+        box-shadow: 15px 0px 5px;
+        position: sticky;
+        top:0px;
+        z-index: 9998;
+      }
+        body {
+      background-color: #000000;
+      margin: 0;
+        padding: 0;
+    }
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .container {
+    opacity: 0;
+      animation: fade-in 1s forwards;
+      max-width: 650px;
+      margin: 50px auto;
+      margin-top: 100px;
+    }
+    a:link, a:visited {
+    text-decoration: none;
+    }
+    a:link, a:visited {
+    color: white;
+    }
+
+    a:hover, a:focus {
+    color: white;
+    }
+
+    a:hover, a:focus {
+    text-decoration: none;
+    }   
+
+    .box {
+      background-color: #2f2f2f;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+
+    .box h2 {
+      color: #ffffff;
+      margin-top: 0;
+    }
+
+    .box p {
+      color: #ffffff;
+    }
+    .box1 {
+      position: fixed;
+      background-color: #3b3a3a;
+      border-radius: 30px;
+      padding: 5px;
+      right: 10px;
+      bottom: 10px;
+      color: #ffffff
+    }
+    .box1 p {
+        font-size: 10px;
+    }
+    .back-button {
+      position: fixed;
+      top: 35px;
+      left: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: #3b3a3a;
+      color: #ffffff;
+      cursor: pointer;
+      z-index: 9999;
+    }
+    .map {
+        border-radius: 5px;
+    }
+    </style>
+</head>
+<body>
+    <a class="back-button" href="index.html">&lt; Back</a>
+    <div class="topbar" style="-webkit-app-region: drag"></div>
+    <div class="container">
+        <div class="box">
+          <h2>Web map</h2>
+          <iframe src="http://qoriginal.vip:8100" height="600px" width="600px" class="map">webmap</iframe>
+        </div>
+        <div class="box1">
+        <p>QOApp Release 1.0</p>
+      </div>
+      </div>
+</body>

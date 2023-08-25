@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Info</title>
+<link rel="stylesheet" href="forum-userinfo.css">
+</head>
+<body>
+  <div class="forum-articles">
+    <div class="rounded-rectangle" id="userDetails">
+      <h1 class="title" id="title">My Info</h1>
+      <p class="info-label">ID:</p>
+      <p class="info-value" id="userId">123456</p>
+      <p class="info-label">Tags:</p>
+      <div class="tags">
+        <img src="" id="premiumTag" alt="Premium Tag" class="tag-icon">
+        <img src="" id="donatorTag" alt="Donator Tag" class="tag-icon">
+      </div>
+      <p class="info-label">Reg date:</p>
+      <p class="info-value" id="userLoginDate">Tag1, Tag2, Tag3</p>
+    </div>
+  </div>
+  <div class="return-button" onclick="returnMain()">
+    <p>返回主页</p>
+  </div>
+  <script>
+    // 获取需要填充的元素
+    const userIdElement = document.getElementById('userId');
+    const premiumTagElement = document.getElementById('premiumTag');
+    const donatorTagElement = document.getElementById('donatorTag');
+    const userLoginDateElement = document.getElementById('userLoginDate');
+    const name = localStorage.getItem('username');
+
+    // 从服务器获取 JSON 数据并填充元素
+    fetch('http://qoriginal.vip:8080/forum/fetch/myself?name=' + name)
+      .then(response => response.json())
+      .then(data => {
+        userIdElement.textContent = data.username;
+
+        if (data.premium) {
+          premiumTagElement.src = 'https://s1.ax1x.com/2023/08/11/pPnVxkd.png'; // 设置 Premium 标签图像的路径
+        } else {
+          premiumTagElement.style.display = 'none';
+        }
+
+        if (data.donate) {
+          donatorTagElement.src = 'https://s1.ax1x.com/2023/08/11/pPnVjTH.png'; // 设置 Donator 标签图像的路径
+        } else {
+          donatorTagElement.style.display = 'none';
+        }
+
+        userLoginDateElement.textContent = data.date;
+      })
+      .catch(error => {
+        console.error('请求出错：', error);
+      });
+
+    function returnMain() {
+      window.location.href = 'forum.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    margin: 0;
+    padding: 0;
+    background-size: cover; /* 图像将缩放以覆盖整个屏幕 */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* 可选，使背景保持固定不动 */
+    overflow: hidden;
+    transition: background-image 0.5s ease-in-out;
+}
+@font-face {
+    font-family: Jetbrains;
+    src: url(asset/font/NeueMachina-Regular.ttf);
+}
+.image-info{
+    position: absolute;
+    bottom: 40px;
+    right: 100px;
+    backdrop-filter: blur(15px);
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Jetbrains';
+    font-size: 10px;
+}
+
+.login-container {
+    /*background-color: #212121;*/
+    max-width: 300px;
+    margin: 15vh auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    outline: 1px solid whitesmoke;
+}
+p{
+  color:white;
+  font-size: 7px;
+}
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+h1 {
+    text-align: center;
+    color:white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    color:white;
+}
+
+label {
+    margin-bottom: 5px;
+    color:white;
+}
+
+
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color:#212121;
+}
+
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    color:white;
+    margin: 10px;
+}
+button:hover {
+    background-color: #0056b3;
+}

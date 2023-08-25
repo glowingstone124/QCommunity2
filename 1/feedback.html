@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+        padding: 0;
+    }
+
+    .container {
+      width: 600px;
+      margin: 50px auto;
+      margin-top: 170px;
+    }
+
+    .form-container {
+      margin-bottom: 20px;
+    }
+
+    .form-container input[type="text"],
+    .form-container textarea {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+      background-color: #3b3a3a;
+      color: #ffffff;
+    }
+
+    .form-container textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    .form-container button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #3b3a3a;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .back-button {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: #3b3a3a;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .box1 {
+      position: fixed;
+      background-color: #3b3a3a;
+      border-radius: 30px;
+      padding: 5px;
+      right: 10px;
+      bottom: 10px;
+      color: #ffffff
+    }
+    .box1 p {
+        font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar" style="-webkit-app-region: drag"></div>
+    <a class="back-button" href="index.html">&lt; Back</a>
+  <div class="container">
+    <div class="form-container">
+      <input type="text" id="username-input" placeholder="输入用户名">
+      <textarea id="suggestion-input" placeholder="写下你的建议"></textarea>
+      <button onclick="saveSuggestion()">发送建议</button>
+    </div>
+    <div id="message" style="display: none;"></div>
+    <div class="box1"> 
+      <p>QOApp Release 1.0</p>
+    </div>
+  </div>
+
+  <script>
+    function saveSuggestion() {
+      var username = document.getElementById("username-input").value;
+      var suggestion = document.getElementById("suggestion-input").value;
+
+      var suggestionData = {
+        username: username,
+        suggestion: suggestion
+      };
+
+      var json = JSON.stringify(suggestionData);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://qoriginal.vip:9010/save_suggestion.php", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            showMessage("建议已保存");
+          } else {
+            showMessage("保存建议时出现错误");
+          }
+        }
+      };
+
+      xhr.send(json);
+    }
+
+    function showMessage(message) {
+      var messageElement = document.getElementById("message");
+      messageElement.textContent = message;
+      messageElement.style.display = "block";
+    }
+  </script>
+</body>
+</html>

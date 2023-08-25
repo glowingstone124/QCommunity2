@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'MiSans', sans-serif;
+}
+
+header {
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.top-menu {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(182, 182, 182);
+}
+
+.top-menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  margin: 0 20px;
+}
+
+.top-menu a:hover {
+  background-color: #1976D2;
+}

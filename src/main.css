@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+@font-face {
+    font-family: Opensans;
+    src: url(asset/font/OpenSans.ttf);
+}
+*{
+    font-family: 'Opensans';
+}
+.user-notice {
+    background-color: #333;
+    color: black;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding: 80px;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+        max-height: 75vh; /* 设置最大高度 */
+        overflow-y: auto; /* 添加垂直滚动条 */
+}
+
+.user-notice h2 {
+    margin-top: 0;
+}
+
+.user-notice button {
+    margin-top: 10px;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.modal-content {
+    font-size: 18px;
+    text-align: center;
+}
+h2{
+    color: white;
+}
+a{
+    text-decoration: underline;
+    color:white;
+}
+.main-container {
+    display: flex;
+    height: 100vh;
+    margin-right: 150px;
+}
+
+.menu {
+    width: 200px;
+    height: 100%;
+    background-color: #333; /* 修改背景颜色为深灰色 */
+    padding: 20px;
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.2); /* 添加右侧阴影效果 */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    color:white;
+}
+
+label {
+    margin-bottom: 5px;
+    color:white;
+}
+
+
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color:#212121;
+}
+.selected{
+    font-size: 30px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    color:white;
+    margin: 10px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+.menu ul {
+    margin-top:30px;
+    margin-left: 5%;
+    list-style: none;
+    padding: 0;
+    align-items: center;
+    color:white;
+}
+
+.menu li {
+    margin-bottom: 30px;
+    border-radius: 15px; /* 添加圆角矩形边框 */
+    color:white;
+}
+
+.menu li a {
+    display: flex; /* 设置链接为Flex容器 */
+    align-items: center; /* 将子元素垂直居中 */
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.menu li a:hover {
+    color: #007bff;
+}
+.memorial{
+    height: 20px;
+    width: 20px;
+}
+.notice{
+    border-radius: 10px; /* 调整此值以控制圆角的弧度 */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 500px;
+}
+.memorial-section {
+    display: flex;
+    align-items: center; /* Vertical alignment */
+    margin-bottom: 20px; /* Add some spacing between player sections */
+}
+
+.memorial-avatar {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    margin-right: 10px; /* Add spacing between avatar and name */
+}
+
+.content{
+    margin-left: 300px;
+    left:400px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+h1{
+    color:white;
+    font-size: 70px;
+}
+p{
+    color:white;
+}
+li{
+    color:white;
+}
+h3{
+    color:white;
+}

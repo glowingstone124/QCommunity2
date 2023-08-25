@@ -1,0 +1,74 @@
+@font-face {
+    font-family: JB;
+    src: url(asset/font/NeueMachina-Regular.ttf);
+}
+body {
+    font-family: 'JB';
+    margin: 30px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #333;
+  }
+  p{
+    color:white;
+  }
+  
+  .forum-articles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+    position: relative; /* 添加相对定位 */
+  }
+/* 其他样式... */
+/* 其他样式... */
+
+.info-label {
+    color: #999; /* 辅助文字颜色 */
+    margin: 10px 0; /* 上下外边距 */
+  }
+  
+  .info-value {
+    color: #f2f2f2; /* 白色文字颜色 */
+    font-weight: bold; /* 加粗字体 */
+    margin: 5px 0; /* 上下外边距 */
+  }
+  
+.title {
+    color: #f2f2f2;
+    font-size: 47px;
+    margin: 20px 0; /* 在上下添加外边距 */
+  }  
+  .rounded-rectangle {
+    width: 800px;
+    height: 470px;
+    margin: 70px;
+    padding-left: 20px; 
+    background-color: #414141;
+    border-radius: 15px;
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  .return-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #414141;
+    border-radius: 15px;
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+    padding: 8px 12px;
+  }
+  .tag-icon {
+    width: 10%;
+    height: 10%;
+    margin-right: 5px;
+  }
+  .return-button a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  
+  

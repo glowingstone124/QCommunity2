@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="forum-index.css">
+</head>
+<body>
+  <div class="return-button" onclick="returnMain()">
+    <p>返回主页</p>
+  </div>
+  <div class="forum-articles">
+    <div class="userinfo" id="userinfoWrapper">
+        <p id="userinfo" class="userinfo-inner">username</p>
+    </div>
+    <h1 class="title" id="title">Quantum<br>Original<br>Forum_</h1>
+    <div class="rounded-rectangle" id="notice">
+      <h2 id="notice-header">最新通知</h2>
+      <p id="notice-author">admin</p>
+      <p id="notice-text">内容</p>
+    </div>
+    <div class="rounded-rectangle" id="discuss">
+      <h2 id="discuss-header">交流</h2>
+    </div>
+    <div class="rounded-rectangle" id="gameinfo">
+      <h2 id="game-header">游戏分享</h2>
+    </div>
+    <div class="rounded-rectangle" id="servermessage"></div>
+  </div>
+  <script src="script/forum-notice.js"></script>
+  <script src="script/backtoMain.js"></script>
+  <script>
+const userInfo = document.getElementById('userinfo');
+const data = localStorage.getItem('username');
+const userInfoWrapper = document.getElementById('userinfoWrapper');
+
+fetch('http://qoriginal.vip:8080/forum/fetch/myself?name=' + data, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+})
+.then(response => response.json())
+.then(responseData => {
+    const username = responseData.username;
+    userInfo.textContent = username;
+    userInfoWrapper.style.display = 'block';
+})
+.catch(error => {
+    // 处理请求错误
+    alert('请求出错：' + error);
+});
+const userinfoWrapper = document.getElementById('userinfoWrapper');
+
+if (data != "Guest") {
+userinfoWrapper.addEventListener('click', function() {
+    // 在此处指定要跳转的页面 URL
+    const targetUrl = 'forum-info.html';
+    window.location.href = targetUrl;
+});
+}
+
+    </script>
+  <script>
+// 获取标题元素
+const titleElement = document.getElementById('title');
+
+// 定义要循环的文本数组
+const newTexts = [
+  'Quantum<br>Original<br>Forum_',
+  'Quantum<br>Original<br>Forum'
+];
+
+let index = 0;
+
+// 设置定时循环，每隔 50 毫秒更改一次标题文本
+const intervalId = setInterval(() => {
+  titleElement.innerHTML = newTexts[index];
+  index = (index + 1) % newTexts.length; // 循环索引
+}, 300);
+
+  </script>
+</body>
+</html>

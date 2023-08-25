@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>主页面</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="menu">
+            <!-- 左边的功能菜单 -->
+            <ul>
+                <li><a href="status.html">服务器概况</a></li>
+                <li><a href="bind.html">绑定游戏账户</a></li>
+                <li><a href="map.html">服务器地图</a></li>
+                <li><a href="searchbind.html">查询绑定</a></li>
+                <li><a href="about.html">关于QOApp</a></li>
+                <li><a href="forum.html">论坛</a></li>
+                <li><a href="memorial.html">纪念堂</a></li>  
+                <!-- 添加其他菜单项 -->
+            </ul>
+        </div>
+        <div class="content">
+            <!-- 右边的内容显示区域 -->
+            <h1>选择一个功能，然后它会显示在这里。</h1>
+            <p id="userlogin">Quantum Original App</p>
+            <div class="notice">
+                <h2 id="noticeTitle"></h2>
+                <div id="noticeArticle"></p>
+            </div>
+        </div>
+        
+        <div class="user-notice" id="userNotice">
+            <h2>用户须知</h2>
+            <p>最后更新于2023/8/23</p>
+            <p>欢迎加入Quantum Original!<br>在这里，我们希望为所有玩家创造一个友好、有趣和安全的游戏环境。为了确保大家能够共同享受游戏的乐趣，请务必遵守以下规则和注意事项：</p>
+            <h2>规则介绍：</h2>
+    <ol>
+        <li><strong>尊重他人：</strong> 请对其他玩家保持礼貌和尊重，不要进行人身攻击、辱骂或不适当的行为。大家都希望能在一个友好的环境中玩耍。</li>
+        <li><strong>不要作弊：</strong> 使用任何外挂、修改器或作弊行为都是严格禁止的，这会破坏游戏平衡并损害其他玩家的体验。</li>
+        <li><strong>保护建筑：</strong> 请勿破坏、恶意破坏或破坏服务器内的建筑、物品或环境。我们希望保持服务器的美观和可玩性。</li>
+    </ol>
+
+    <p>
+        <strong>隐私保护：</strong> 我们会尊重您的个人隐私，并采取适当的措施保护您的个人信息。我们不会未经您的同意分享您的信息。
+    </p>
+    <p>
+        <strong>文明游戏：</strong>请不要在游戏中/其它位置辱骂他人。
+    </p>
+    <h2>交流须知：</h2>
+    <p>
+        <strong>聊天内容：</strong> 我们尊重每一位玩家的个人隐私，请不要在群聊中散发任何人的隐私信息。<br>请不要在聊天中发布涉政，涉恐，涉黄等违法违规消息，您需要承担因为此原因导致的经济损失，必要时承担刑事责任。
+    </p>
+    <p>
+        <strong>信息收集：</strong> 为了提供更好的游戏体验，我们会收集一些基本的游戏数据，如用户名、IP地址、QQ号等。这些信息将仅用于内部分析和服务器管理。
+    </p>
+    <p>
+        <strong>第三方服务：</strong> 在服务器中使用插件来提供登录功能，此功能会记录您的QQ号，并通过hash加密存储在我们的数据库中。如果您对QQ号存储抱反对态度，请不要使用对应的功能。
+        如果您离开了本服务器，请及时向管理员报备来销毁您的账户。我们不会销毁您的账户。对于您忘记销毁账户造成的一系列后果，Quantum Original不负任何责任。
+    </p>
+    <h2>关于QOAPP：</h2>
+    <p>
+        QOAPP是一个辅助您游玩Quantum Original的应用。其中可能出现的所有个人信息都是基于玩家自愿的。如果您对于个人信息保存有任何建议，请详询hanserofficial@outlook.com<br>
+    </p>
+    <h2>其他：</h2>
+    <p>如果您游玩我们的服务器，我们默认您同意遵守以上规则和注意事项。违反这些规定可能会导致暂时或永久的禁止进入服务器，您同时需要赔偿造成的经济损失，必要时承担刑事责任。感谢您的合作，希望您在我们的服务器中度过愉快的时光！</p>
+
+    <p>如有任何疑问或问题，请随时联系我们的管理员。</p>
+            <button id="closeNotice">关闭</button>
+        </div>
+        
+        <script>
+            const userlogina = document.getElementById('userlogin');
+            const username = localStorage.getItem('username');
+            userlogina.textContent = "welcome," + username;
+
+            const userNotice = document.getElementById('userNotice');
+const closeNoticeButton = document.getElementById('closeNotice');
+fetch('http://qoriginal.vip:8080/api/isFirstLogin?name=' + username)
+.then(response => response.json())
+.then(responseData => {
+    if(responseData.first === true){
+        showUserNotice();
+    } else {
+        closeUserNotice();
+    }
+})
+.catch(error => {
+    // 处理请求错误
+    alert('请求出错：' + error);
+});
+// 显示用户须知
+function showUserNotice() {
+    userNotice.style.display = 'block';
+}
+
+// 关闭用户须知
+function closeUserNotice() {
+    userNotice.style.display = 'none';
+}
+// 在您的现有脚本中添加以下代码段
+
+// 获取公告内容
+const noticeContainer = document.getElementById('notice'); // 这是一个用于显示公告的 HTML 元素
+const noticeTitle = document.getElementById("noticeTitle");
+const noticeArticle = document.getElementById("noticeArticle");
+fetch('http://qoriginal.vip:8080/api/getNotice')
+.then(response => response.json())
+.then(noticeData => {
+    // 更新公告内容到网页上
+    
+    noticeArticle.innerHTML= '<h2>'+ noticeData.title +'</h2>' + '<p>' + noticeData.info + '</p>';
+})
+.catch(error => {
+    console.error('获取公告失败：', error);
+});
+
+
+        </script>
+    </div>
+</body>
+</html>

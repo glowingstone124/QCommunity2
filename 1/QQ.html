@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: #000000;
+      margin: 0;
+        padding: 0;
+    }
+
+    .container {
+      width: 600px;
+      margin: 50px auto;
+      margin-top: 170px;
+      opacity: 0;
+      animation: fade-in 1s forwards;
+    }
+    .box1 {
+      position: fixed;
+      background-color: #3b3a3a;
+      border-radius: 30px;
+      padding: 5px;
+      right: 10px;
+      bottom: 10px;
+      color: #ffffff
+    }
+    .box1 p {
+        font-size: 10px;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .box {
+      background-color: #3b3a3a;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+
+    .box h2 {
+      color: white;
+      margin-top: 0;
+    }
+
+    .box p {
+      color: white;
+    }
+
+    .search-container {
+      margin-bottom: 20px;
+    }
+
+    .search-container input[type="text"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-right: 10px;
+      background-color: #3b3a3a;
+    }
+
+    .search-container button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #3b3a3a;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 35px;
+      left: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: #3b3a3a;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .topbar {
+        background-color: #3b3a3a; /* 灰色背景色 */
+        height: 30px;
+      }
+  </style>
+</head>
+<body>
+  <a class="back-button" href="index.html">&lt; Back</a>
+  <div class="topbar" style="-webkit-app-region: drag"></div>
+  <div class="container">
+    <div class="search-container">
+      <input type="text" id="name-input" placeholder="输入Name">
+      <button onclick="searchname()">查询</button>
+    </div>
+    <div class="box" id="box1">
+      <h2>Empty</h2>
+    </div>
+    <div class="search-container">
+      <input type="text" id="qq-input" placeholder="输入QQ">
+      <button onclick="searchid()">查询</button>
+    </div>
+    <div class="box" id="box2">
+      <h2>Empty</h2>
+    </div>
+    <div class="box1"> 
+      <p>QOApp Release 1.0</p>
+    </div>
+  </div>
+
+  <script>
+    function searchname() {
+      var name = document.getElementById("name-input").value;
+      var url = "https://api.jcsuf.top/qo/download/registry?name=" + encodeURIComponent(name);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.setRequestHeader("Accept", "application/json");
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          displayNameData(response);
+        }
+      };
+
+      xhr.send();
+    }
+
+    function displayNameData(data) {
+      if (data.code == 0) {
+        status = "完成"
+      } else if (data.code == 1){
+        status = "没有此用户"
+      }
+      var box = document.getElementById("box1");
+      var title = document.createElement("h2");
+      title.textContent = "状态: " + status;
+      var content = document.createElement("p");
+      content.textContent = "QQ: " + data.qq;
+      box.innerHTML = "";
+      box.appendChild(title);
+      box.appendChild(content);
+    }
+    function searchid() {
+      var qq = document.getElementById("qq-input").value;
+      var url = "https://api.jcsuf.top/qo/download/registry?qq=" + encodeURIComponent(qq);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.setRequestHeader("Accept", "application/json");
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          displayQQData(response);
+        }
+      };
+
+      xhr.send();
+    }
+    function displayQQData(data) {
+      if (data.code == 0) {
+        status = "完成"
+      } else if (data.code == 1){
+        status = "没有此用户"
+      }
+      var box = document.getElementById("box2");
+      var title = document.createElement("h2");
+      title.textContent = "状态: " + status;
+      var content = document.createElement("p");
+      content.textContent = "ID: " + data.qq;
+      box.innerHTML = "";
+      box.appendChild(title);
+      box.appendChild(content);
+    }
+  </script>
+</body>
+</html>

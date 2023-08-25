@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="script/userdisplay.js"></script>
+    <script src="script/uuidFetcher.js"></script>
+</head>
+<style>
+    iframe{
+        scale: 0.9;
+    }
+</style>
+<body>
+    <div class="main-container">
+        <div class="menu">
+            <!-- 左边的功能菜单 -->
+            <ul>
+                <li><a href="status.html">服务器概况</a></li>
+                <li><a href="bind.html">绑定游戏账户</a></li>
+                <li><a href="map.html">服务器地图</a></li>
+                <li><a href="searchbind.html">查询绑定</a></li>
+                <li><a href="about.html">关于QOApp</a></li>
+                <li><a href="forum.html">论坛</a></li>
+                <li><a href="memorial.html" class="selected">纪念堂</a></li>               <!-- 添加其他菜单项 -->
+            </ul>
+        </div>
+        <div class="content">
+            <h1>纪念堂<h1>
+            <h2>会定期更新因各种原因离开/暂离QO的玩家<br>(非正版玩家可能无法正确显示头像)</h2>
+            <!-- 添加玩家信息到纪念堂 -->
+        </div>
+    </div>
+    <script>
+        // 使用Fetch API从服务器获取纪念堂玩家信息
+        fetch('http://qoriginal.vip:8080/qo/download/memorial') // 服务器上的数据文件路径
+            .then(response => response.json())
+            .then(data => {
+                const memorialSection = document.querySelector('.content');
+
+                for (const playerName in data) {
+                    const playerReason = data[playerName];
+
+                    const playerSection = document.createElement('div');
+                    playerSection.classList.add('memorial-section');
+
+                    const playerNameElement = document.createElement('h3');
+                    playerNameElement.textContent = `${playerName}`;
+
+
+                    const playerAvatarElement = document.createElement('img');
+                    uuid(playerName).then(playerUUID => {
+                        playerAvatarElement.src = playerUUID;
+                        playerAvatarElement.classList.add('memorial'); 
+                        playerSection.appendChild(playerAvatarElement);
+                    }).catch(error => {
+                        console.error('Error fetching UUID:', error);
+                    });
+
+                    playerSection.appendChild(playerNameElement);
+                    playerSection.appendChild(playerAvatarElement)
+                
+                    memorialSection.appendChild(playerSection);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+        async function uuid(username) {
+            const apiEndpoint = `http://qoriginal.vip:8080/qo/download/avatar?name=${username}`;
+            try {
+                const response = await fetch(apiEndpoint);
+                const data = await response.json();
+                return data.url;
+            } catch (error) {
+                console.error('Error fetching UUID:', error);
+                throw error;
+            }
+        }
+        </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Renderer</title>
+</head>
+<body>
+  <div id="markdown-content"></div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // 使用 fetch 获取 Markdown 文件内容
+    fetch('/markdown/test.md')
+      .then(response => response.text())
+      .then(markdownText => {
+        // 使用 marked.js 将 Markdown 转换为 HTML 并显示在页面上
+        const markdownContent = document.getElementById('markdown-content');
+        markdownContent.innerHTML = marked(markdownText);
+      })
+      .catch(error => {
+        console.error('请求 Markdown 文件出错：', error);
+      });
+  </script>
+</body>
+</html>

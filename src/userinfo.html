@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="forum-userinfo.css">
+</head>
+<body>
+  <div class="return-button" onclick="returnMain()">
+    <p>返回主页</p>
+  </div>
+  <div class="forum-articles">
+    <div class="rounded-rectangle" id="userDetails">
+      <h1 class="title" id="title">User Info</h1>
+      <p class="info-label">ID:</p>
+      <p class="info-value" id="userId">123456</p>
+      <p class="info-label">Tags:</p>
+      <div class="tags">
+        <img src="" id="premiumTag" alt="Premium Tag" class="tag-icon">
+        <img src="" id="donatorTag" alt="Donator Tag" class="tag-icon">
+      </div>
+      <p class="info-label">Reg date:</p>
+      <p class="info-value" id="userLoginDate">1970-1-1</p>
+    </div>
+  </div>
+  <script src="/script/customuserSpace.js"></script>
+  <script>
+    function returnMain(){
+      window.location.href = '/forum.html';
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+        .topbar {
+        background-color: #3b3a3a; /* 灰色背景色 */
+        height: 30px;
+      }
+    body {
+      background-color: #000000;
+      margin: 0;
+        padding: 0;
+    }
+    .input {
+  border: 2px solid #FFFFFF;
+  border-radius: 5px;
+  padding: 10px;
+  color: #FFFFFF;
+  background-color: transparent;
+}
+
+
+    .container {
+      width: 800px;
+      margin: 50px auto;
+      margin-top: 170px;
+      opacity: 0;
+      animation: fade-in 1s forwards;
+    }
+    .box1 {
+      position: fixed;
+      background-color: #3b3a3a;
+      border-radius: 30px;
+      padding: 5px;
+      right: 10px;
+      bottom: 10px;
+      color: #ffffff
+    }
+    .box1 p {
+        font-size: 10px;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .box {
+      background-color: #3b3a3a;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+
+    .box h2 {
+      color: white;
+      margin-top: 0;
+    }
+
+    .box p {
+      color: white;
+    }
+
+    .search-container {
+      margin-bottom: 20px;
+    }
+
+    .search-container input[type="text"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-right: 10px;
+      background-color: #3b3a3a;
+    }
+
+    .search-container button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #3b3a3a;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 35px;
+      left: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: #3b3a3a;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript" src="token.js"></script>
+</head>
+<body>
+  <div class="topbar" style="-webkit-app-region: drag"></div>
+  <a class="back-button" href="index.html">&lt; Back</a>
+
+  <div class="container">
+    <div class="box" id="box1">
+      <h2>自主绑定：</h2>
+      <p>请保证用户名和qq合法</p>
+      <p>请在填写之前核对您的用户名和qq是否正确!如果不正确需要请求管理手动更改！</p>
+      <div class="search-container">
+        <input type="text" id="username" class = "input" placeholder="用户名">
+        <input type="text" id="qq" placeholder="QQ号" class = "input">
+        <button onclick="submitForm()">提交请求</button>
+        <p class="response">状态：</p>
+      </div>
+    </div>
+    <div class="box1"> 
+      <p>QOApp Release 1.0</p>
+    </div>
+    <div class="bo1">
+      <p class="response"></p>
+        </div>
+  </div>
+
+  <script>
+    function submitForm() {
+  const tokenGenerator = new TokenGenerate();
+  var username = document.getElementById("username").value;
+  var qq = parseInt(document.getElementById("qq").value);
+  var token1 = tokenGenerator.token(username, qq);
+  console.log(token1)
+  var tokenPart1 = token1.slice(0, 8);
+  var tokenPart2 = token1.slice(8);
+  var finaltoken = "QO-" + tokenPart1 + "-" + tokenPart2 + "-" + generateRandomNumber();
+  var url = "http://qoriginal.vip:8080/qo/upload/registry?name=" + encodeURIComponent(username) + "&uid=" + encodeURIComponent(qq) + "&token=" + finaltoken;
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        var responseElements = document.getElementsByClassName("response");
+        for (var i = 0; i < responseElements.length; i++) {
+          responseElements[i].textContent = "完成！";
+        }
+    }
+  };
+  xhr.send();
+}
+
+    function generateRandomNumber() {
+  var randomNumber = Math.floor(Math.random() * 100000000);
+  var paddedNumber = randomNumber.toString().padStart(8, '0');
+  return paddedNumber;
+}
+  </script>
+</body>
+</html>

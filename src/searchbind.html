@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="menu">
+            <!-- 左边的功能菜单 -->
+            <ul>
+                <li><a href="status.html">服务器概况</a></li>
+                <li><a href="bind.html">绑定游戏账户</a></li>
+                <li><a href="map.html">服务器地图</a></li>
+                <li><a href="searchbind.html" class="selected">查询绑定</a></li>
+                <li><a href="about.html">关于QOApp</a></li>
+                <li><a href="forum.html">论坛</a></li>
+                <li><a href="memorial.html">纪念堂</a></li>  
+                <!-- 添加其他菜单项 -->
+            </ul>
+        </div>
+        <div class="content">
+            <!-- 右边的内容显示区域 -->
+            <h1>查询指定用户名的绑定情况</h1>
+            <label for="username">用户名：</label>
+            <input type="text" id="username" placeholder="请输入用户名">
+            <br>
+            <p id="returnUser">NULL</p>
+            <p id="FrozenUser">NULL</p>
+            <button onclick="search()">查询</button>
+        </div>
+        <script>
+            function search(){
+        var username = document.getElementById('username').value;
+        fetch ("http://qoriginal.vip:8080/qo/download/registry?name=" + username)
+        .then(response => response.json())
+      .then(data => {
+        const userIdElement = document.getElementById("returnUser");
+        const FrozenElement = document.getElementById("FrozenUser");
+        var frozen = "否";
+        userIdElement.textContent = "QQ号:" + data.qq;
+        if (data.frozen == true) {
+            frozen = "是";
+        } else if(data.frozen == false){
+            frozen = "否";
+        } else {
+            frozen = "N/A"
+        }
+        FrozenElement.textContent = "被冻结:" + frozen;
+      })
+      .catch(error => {
+        console.error('请求出错：', error);
+      });
+    }
+        </script>
+    </div>
+</body>
+</html>

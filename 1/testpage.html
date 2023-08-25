@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://font.sec.miui.com/font/css?family=MiSans:300,400,450,500,600,650:Chinese_Simplify,Latin&display=swap" />
+  <link rel="stylesheet" type="text/css" href="mtd.css">
+  <link rel="stylesheet" type="text/css" href="https://font.sec.miui.com/font/css?family=Mi_Lan_Pro:500:Chinese_Simplify,Latin&display=swap" />
+  <style>
+    body {
+      font-family: MiSans, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #E3E5E7;
+      background-color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      margin-top: 100px;
+    }
+
+    h1 {
+      color: #ffffff;
+      font-size: 88px;
+      font-weight: 100;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      color: #c9bfbf;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    p {
+      color: #999;
+      margin-bottom: 20px;
+    }
+
+    .resource-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .resource-link {
+      display: inline-block;
+      color: #000000;
+      text-decoration: none;
+      margin: 0 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+      background-color: #ffffff;
+      backdrop-filter: blur(8px);
+      transition: background-color 0.3s;
+    }
+    .resource-link:hover {
+      background-color: #6e7378;
+      color: #fff;
+    }
+
+    .resource-link:first-child {
+      margin-left: 0;
+    }
+
+    .resource-link:last-child {
+      margin-right: 0;
+    }
+
+    .section {
+      margin-top: 50px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 0px;
+      box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+
+    .section h2 {
+      color: #333;
+      font-size: 30px;
+      font-weight:400;
+      margin-bottom: 10px;
+    }
+
+    .section p,
+    .section ol {
+      color: #666;
+    }
+
+    .section ol {
+      margin-left: 20px;
+      padding-left: 20px;
+    }
+
+    .section ol li {
+      margin-bottom: 10px;
+    }
+.video-container {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+  </style>
+  <title>TinyMSG</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="video-container">
+  </div>
+    <h1>TinyMSG</h1>
+    <h3>Tiny, CLI-supported Chat App</h3>
+    <p>Resources:</p>
+    <div class="resource-container">
+      <a class="resource-link" href="https://tmsg.glowingstone.cn/source.json">TinyMSG Central Source List</a>
+      <a class="resource-link" href="https://github.com/glowingstone124/TinyMSG">Official Github Page</a>
+      <a class="resource-link" href="https://tmsg.glowingstone.cn/Introduction.html">Introduction</a>
+      <a class="resource-link" href="https://tmsg.glowingstone.cn/update.json">Update Checker</a>
+    </div>
+    <div class="section">
+      <h2>Introduction</h2>
+      <p>This is the official webpage of TinyMSG. It provides resources and updates related to the TinyMSG messaging platform. You can find the Central source list and update checker links above. Stay connected and updated with TinyMSG!</p>
+    </div>
+    <div class="section">
+      <h2>Make your server in the Central Source List</h2>
+      <ol>
+        <li>Ensure your server meets the requirements for compatibility and carefully review our agreement.</li>
+        <li>Obtain the necessary server information, including the server version, IP address, and port.</li>
+        <li>Submit an issue on our GitHub page.</li>
+        <li>Get ready to welcome new users!</li>
+      </ol>
+    </div>
+    <div class="section">
+      <h2>Agreement</h2>
+      <ol>
+        <li>TinyMSG is an open-source, lightweight chat software. It does not have a moderation system, so you are responsible for the content in your channels. We are not liable for any inappropriate content that may appear in your channels.</li>
+        <li>You are responsible for managing your server. If you intend to make your server open to the public, you should provide appropriate guidance and instructions.</li>
+        <li>If you broadcast an NSFW (Not Safe for Work) image on your server, please proactively set its NSFW status to true.</li>
+        <li>If you wish to have your server added to the Central server sources, please submit an issue.</li>
+      </ol>
+    </div>
+  </div>
+</body>
+
+</html>

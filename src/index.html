@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="script/login.js"></script>
+</head>
+<body id="backgroundBody">
+    <div class="login-wrapper">
+    <div class="login-container">
+        <h1>QCommunity</h1>
+        <form onsubmit="return false;">
+            <label for="username">用户名：</label>
+            <input type="text" id="username" placeholder="请输入用户名">
+            <br>
+            <label for="password">密码：</label>
+            <input type="password" id="password" placeholder="请输入密码">
+            <br>
+            <button onclick="login()">登录</button>
+            <button onclick="redirectRegister()">注册</button>
+            <button onclick="redirectMain()">直接进入（无法使用论坛功能）</button>
+        </form>
+    </div>
+    </div>
+    <div class="image-info">
+        <p id="backgroundInfo">Hello, World!</p>
+    </div>
+    <script>
+        function redirectMain(){
+            window.location.replace("main.html");
+            localStorage.setItem('username', "Guest");
+        }
+        function redirectRegister(){
+        window.location.replace("register.html");
+    }
+    </script>
+    <script src="script/bgswitcher.js"></script>
+</body>
+</html>
